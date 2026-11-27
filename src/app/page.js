@@ -81,12 +81,11 @@ export default function Home() {
           <div className="hero-container">
             <div className="hero-copy" data-reveal>
               <div className="badge-pill">
-                <span className="dot-live" /> JALGAON’S CEILING &amp; BUILDING MATERIALS STORE · EST. 1996
+                <span className="dot-live" /> CEILING &amp; BUILDING MATERIALS · EST. 1996
               </div>
 
               <h1 className="hero-headline">
-                Crafting Ceilings of<br />
-                <span>Distinction &amp; Scale.</span>
+                Crafting Ceilings of <span>Distinction &amp; Scale.</span>
               </h1>
 
               <p className="hero-summary">

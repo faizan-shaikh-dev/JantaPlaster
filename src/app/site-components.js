@@ -172,17 +172,22 @@ export function WhatsAppDock() {
         </a>
       </aside>
 
-      {/* Mobile Sticky Bottom Bar */}
+      {/* Mobile Sticky Bottom Bar (Call + WhatsApp) */}
       <nav className="mobile-dock" aria-label="Quick mobile contact">
         <a className="dock-item dock-call" href="tel:+918624093996">
           <PhoneIcon />
-          <span>Call: +91 86240 93996</span>
+          <span>Call Store</span>
         </a>
 
-        <Link className="dock-item dock-gold" href="/materials">
-          <span>Rates &amp; Stock</span>
-          <ArrowIcon />
-        </Link>
+        <a
+          className="dock-item dock-gold"
+          href="https://wa.me/918624093996?text=Hello%20Janta%20Plaster%20%26%20Hardware%2C%20I%20want%20to%20enquire%20about%20materials%20and%20rates."
+          target="_blank"
+          rel="noreferrer"
+        >
+          <WhatsAppIcon />
+          <span>WhatsApp</span>
+        </a>
       </nav>
     </>
   );

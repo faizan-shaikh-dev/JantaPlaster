@@ -1,100 +1,172 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { PhoneIcon } from "./site-components";
+import { ArrowIcon, PhoneIcon, PinIcon, WhatsAppIcon } from "./site-components";
 
 const links = [
-  ["Home", "/"],
-  ["Materials Catalog", "/materials"],
-  ["Contractor Services", "/services"],
-  ["Cost Estimator", "/#calculator"],
-  ["Store Location & Hours", "/contact"],
+  { label: "Home", href: "/" },
+  { label: "Materials Catalog", href: "/materials" },
+  { label: "Contractor Services", href: "/services" },
+  { label: "Cost Estimator", href: "/#calculator" },
+  { label: "About Janta Plaster", href: "/about" },
+  { label: "Store Location & Contact", href: "/contact" },
 ];
+
+const emptySubscribe = () => () => {};
 
 export default function MobileNavigation() {
   const [open, setOpen] = useState(false);
+  const mounted = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  );
   const pathname = usePathname();
 
+  const handleClose = useCallback(() => {
+    setOpen(false);
+  }, []);
+
+  // Lock body scroll when drawer is open
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
-  return (
-    <div className="mobile-menu-container">
-      <button
-        type="button"
-        className="mobile-hamburger"
-        aria-expanded={open}
-        aria-label="Toggle navigation menu"
-        onClick={() => setOpen((prev) => !prev)}
+  // Close drawer on Escape key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape" && open) {
+        handleClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open, handleClose]);
+
+  // Drawer portal content attached directly to document.body
+  const drawerContent = open ? (
+    <div
+      className="mobile-drawer-backdrop"
+      onClick={handleClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mobile Navigation Drawer"
+    >
+      <div
+        className="mobile-drawer"
+        onClick={(e) => e.stopPropagation()}
       >
-        <span className={`hamburger-bar ${open ? "bar-1-open" : ""}`} />
-        <span className={`hamburger-bar ${open ? "bar-2-open" : ""}`} />
-        <span className={`hamburger-bar ${open ? "bar-3-open" : ""}`} />
-      </button>
+        {/* Drawer Header */}
+        <div className="mobile-drawer-header">
+          <Link href="/" className="drawer-brand" onClick={handleClose}>
+            <Image
+              src="/brand/jp-mark.svg"
+              alt="Janta Plaster Logo"
+              width={34}
+              height={34}
+            />
+            <div>
+              <strong>JANTA PLASTER</strong>
+              <small>HARDWARE · JALGAON</small>
+            </div>
+          </Link>
 
-      {open && (
-        <div className="mobile-drawer-backdrop" onClick={() => setOpen(false)}>
-          <div
-            className="mobile-drawer"
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
+          <button
+            type="button"
+            className="drawer-close"
+            onClick={handleClose}
+            aria-label="Close navigation menu"
           >
-            <div className="mobile-drawer-header">
-              <div className="drawer-brand">
-                <strong>JANTA PLASTER</strong>
-                <small>HARDWARE · JALGAON</small>
-              </div>
-              <button
-                type="button"
-                className="drawer-close"
-                onClick={() => setOpen(false)}
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
-            </div>
+            ✕
+          </button>
+        </div>
 
-            <nav className="mobile-drawer-nav">
-              {links.map(([label, href]) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`drawer-link ${pathname === href ? "active" : ""}`}
-                  onClick={() => setOpen(false)}
-                >
-                  {label}
-                  <span className="drawer-arrow">→</span>
-                </Link>
-              ))}
-            </nav>
+        {/* Live Store Status Strip */}
+        <div className="drawer-status-bar">
+          <span className="dot-live" />
+          <span>Store Open: Mon–Sat (8:30 AM – 8:00 PM)</span>
+        </div>
 
-            <div className="mobile-drawer-footer">
-              <a
-                href="https://wa.me/918624093996?text=Hello%20Janta%20Plaster%20%26%20Hardware%2C%20I%20have%20an%20enquiry."
-                target="_blank"
-                rel="noreferrer"
-                className="drawer-btn drawer-btn-gold"
+        {/* Navigation Links (Scrollable Middle Section) */}
+        <nav className="mobile-drawer-nav" aria-label="Mobile Navigation Links">
+          {links.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`drawer-link ${isActive ? "active" : ""}`}
+                onClick={handleClose}
               >
-                <span>Instant Project Quote</span>
+                <span>{link.label}</span>
                 <span className="drawer-arrow">→</span>
-              </a>
-              <a href="tel:+918624093996" className="drawer-btn drawer-btn-call">
-                <PhoneIcon /> Call +91 86240 93996
-              </a>
-              <p className="drawer-address">
-                No. 6, Millat Nagar, near Reliance Petrol Pump, Mehrun, Jalgaon
-              </p>
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Drawer Footer with Fast CTAs & Address */}
+        <div className="mobile-drawer-footer">
+          <a
+            href="https://wa.me/918624093996?text=Hello%20Janta%20Plaster%20%26%20Hardware%2C%20I%20have%20an%20enquiry%20regarding%20materials%20and%20rates."
+            target="_blank"
+            rel="noreferrer"
+            className="drawer-btn drawer-btn-gold"
+          >
+            <WhatsAppIcon />
+            <span>Instant WhatsApp Quote</span>
+            <ArrowIcon />
+          </a>
+
+          <a href="tel:+918624093996" className="drawer-btn drawer-btn-call">
+            <PhoneIcon />
+            <span>Call: +91 86240 93996</span>
+          </a>
+
+          <div className="drawer-address-card">
+            <div className="dac-head">
+              <PinIcon />
+              <strong>Mehrun Store Depot:</strong>
             </div>
+            <p>
+              No. 6, Millat Nagar, near Reliance Petrol Pump, Mehrun, Jalgaon
+            </p>
           </div>
         </div>
-      )}
+      </div>
+    </div>
+  ) : null;
+
+  return (
+    <div className="mobile-menu-container">
+      {/* Hamburger Trigger Button (Min 44px for ideal touch target) */}
+      <button
+        type="button"
+        className={`mobile-hamburger ${open ? "is-active" : ""}`}
+        aria-expanded={open}
+        aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+        onClick={() => setOpen((prev) => !prev)}
+      >
+        <span className="hamburger-box">
+          <span className={`hamburger-bar bar-1 ${open ? "bar-1-open" : ""}`} />
+          <span className={`hamburger-bar bar-2 ${open ? "bar-2-open" : ""}`} />
+          <span className={`hamburger-bar bar-3 ${open ? "bar-3-open" : ""}`} />
+        </span>
+      </button>
+
+      {/* Render Drawer to document.body via Portal to break out of sticky header containing blocks */}
+      {mounted && drawerContent ? createPortal(drawerContent, document.body) : null}
     </div>
   );
 }
