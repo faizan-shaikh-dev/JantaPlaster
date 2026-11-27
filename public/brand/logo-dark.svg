@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" fill="none">
+  <defs>
+    <linearGradient id="jpGold" x1="35" y1="28" x2="184" y2="190" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC928"/><stop offset=".52" stop-color="#FF9D16"/><stop offset="1" stop-color="#E84727"/>
+    </linearGradient>
+  </defs>
+  <circle cx="110" cy="110" r="98" stroke="url(#jpGold)" stroke-width="10"/>
+  <path d="M99 52v91c0 20-11 31-31 31-14 0-26-5-36-15l15-17c6 6 12 10 19 10 9 0 13-5 13-14V52h20Z" fill="url(#jpGold)"/>
+  <path d="M114 52h35c27 0 45 15 45 41s-18 42-45 42h-15v40h-20V52Zm35 64c16 0 25-8 25-23s-9-23-25-23h-15v46h15Z" fill="url(#jpGold)"/>
+  <text x="242" y="101" fill="#FFF9EE" font-family="Arial, Helvetica, sans-serif" font-size="60" font-weight="800" letter-spacing="-2">JANTA PLASTER</text>
+  <text x="245" y="157" fill="#FFC04A" font-family="Arial, Helvetica, sans-serif" font-size="35" font-weight="700" letter-spacing="5">&amp; HARDWARE</text>
+  <path d="M245 178h490" stroke="#F2B51B" stroke-width="5" stroke-linecap="round"/>
+</svg>

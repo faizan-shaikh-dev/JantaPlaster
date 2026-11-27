@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <linearGradient id="jpGold" x1="47" y1="35" x2="211" y2="224" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFC928"/><stop offset=".52" stop-color="#FF9D16"/><stop offset="1" stop-color="#E84727"/>
+    </linearGradient>
+  </defs>
+  <circle cx="128" cy="128" r="112" stroke="url(#jpGold)" stroke-width="12"/>
+  <path d="M115 62v104c0 22-13 35-36 35-16 0-29-6-40-17l17-19c7 7 14 11 22 11 10 0 15-5 15-16V62h22Z" fill="url(#jpGold)"/>
+  <path d="M132 62h40c31 0 51 17 51 46s-20 47-51 47h-17v45h-23V62Zm40 73c18 0 28-9 28-27s-10-26-28-26h-17v53h17Z" fill="url(#jpGold)"/>
+</svg>
