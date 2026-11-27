@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import HomeMotion, { CeilingScene } from "./home-motion";
+import HomeMotion from "./home-motion";
 import { ArrowIcon, PinIcon, PhoneIcon } from "./site-components";
 import CeilingCalculator from "./ceiling-calculator";
 import BrandsStrip from "./brands-strip";
@@ -89,7 +89,7 @@ export default function Home() {
               </h1>
 
               <p className="hero-summary">
-                Jalgaon’s authorized dealer and contractor for <strong>Saint-Gobain Gyproc</strong>, <strong>Sakarni POP</strong>, <strong>Heavy GI Channels</strong> &amp; <strong>Luxury UV Marble Panels</strong>.
+                Thoughtfully chosen ceiling materials and expert installation, all from one trusted Jalgaon team. Discover <strong>Gyproc boards</strong>, <strong>Sakarni POP</strong>, precision framing and refined wall finishes.
               </p>
 
               <div className="hero-actions">
@@ -128,11 +128,25 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 3D Visual Showcase */}
             <div className="hero-visual-frame" data-reveal>
-              <div className="hero-art-card">
-                <div className="canvas-frame">
-                  <CeilingScene />
+              <div className="hero-art-card hero-photo-card">
+                <Image
+                  src="/images/service-pop.jpg"
+                  alt="Sunlit contemporary living room with a refined ceiling and warm interior finishes"
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 42vw"
+                  className="hero-project-image"
+                />
+                <div className="hero-photo-shade" />
+                <div className="hero-photo-label">
+                  <span className="hero-photo-kicker">MATERIALS · DESIGN · INSTALLATION</span>
+                  <strong>A better room<br />starts overhead.</strong>
+                  <span className="hero-photo-caption">Ceiling solutions made for the way you live.</span>
+                </div>
+                <div className="hero-photo-stamp" aria-label="Serving Jalgaon since 1996">
+                  <strong>28</strong>
+                  <span>YEARS<br />IN JALGAON</span>
                 </div>
               </div>
             </div>
