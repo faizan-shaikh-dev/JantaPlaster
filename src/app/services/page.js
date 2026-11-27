@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import HomeMotion from "../home-motion";
-import { ArrowIcon, PageHeading, PhoneIcon } from "../site-components";
+import { ArrowIcon, PhoneIcon } from "../site-components";
 import ServicesCarousel from "./services-carousel";
 
 export const metadata = {
@@ -51,16 +51,7 @@ export default function ServicesPage() {
       <HomeMotion>
         {/* HERO SECTION WITH 3-SECOND AUTO SLIDING IMAGES */}
         <section className="services-hero-section" data-reveal>
-          <div className="services-hero-header">
-            <PageHeading
-              eyebrow="ON-SITE CONTRACTOR SERVICES"
-              title="Turnkey False Ceiling Craftsmanship"
-              highlight="in Jalgaon."
-              description="From single-room gypsum drops to complete villas and commercial showrooms, our skilled karigars deliver precision ceilings with genuine materials."
-            />
-          </div>
-
-          {/* 3-Second Automated Slider */}
+          {/* Hero image slider with the service selector below it */}
           <div className="services-carousel-wrapper">
             <ServicesCarousel />
           </div>

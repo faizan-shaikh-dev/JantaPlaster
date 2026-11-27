@@ -157,18 +157,17 @@ export function SiteFooter() {
 export function WhatsAppDock() {
   return (
     <>
-      {/* Floating On-Screen WhatsApp Button */}
+      {/* Floating On-Screen WhatsApp Action Button (Compact circular FAB) */}
       <aside className="floating-whatsapp-widget" aria-label="WhatsApp quick chat">
         <a
           href="https://wa.me/918624093996?text=Hello%20Janta%20Plaster%20%26%20Hardware%2C%20I%20want%20to%20enquire%20about%20ceiling%20materials%20and%20rates."
           target="_blank"
           rel="noreferrer"
           className="f-wa-bubble"
-          aria-label="Chat on WhatsApp"
+          aria-label="Chat with Janta Plaster on WhatsApp"
         >
-          <span className="f-wa-pulse" />
           <WhatsAppIcon />
-          <span className="f-wa-text">Chat on WhatsApp</span>
+          <span className="f-wa-tooltip">Chat with us</span>
         </a>
       </aside>
 

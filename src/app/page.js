@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import HomeMotion, { CeilingScene } from "./home-motion";
+import HomeMotion from "./home-motion";
 import { ArrowIcon, PinIcon, PhoneIcon } from "./site-components";
 import CeilingCalculator from "./ceiling-calculator";
 import BrandsStrip from "./brands-strip";
 import GallerySection from "./gallery-section";
+import InteractiveHeroCeiling from "./interactive-hero-ceiling";
+import CeilingTransformation from "./ceiling-transformation";
 
 const coreMaterials = [
   {
@@ -109,6 +111,41 @@ export default function Home() {
                 </a>
               </div>
 
+              {/* Architectural Contractor Highlights (Harmonious trust proof) */}
+              <div className="hero-features-grid">
+                <div className="hero-feature-item">
+                  <span className="hfi-check">✓</span>
+                  <div className="hfi-content">
+                    <strong>360° Laser Calibrated</strong>
+                    <span>Millimeter-flat framing &amp; zero sagging</span>
+                  </div>
+                </div>
+
+                <div className="hero-feature-item">
+                  <span className="hfi-check">✓</span>
+                  <div className="hfi-content">
+                    <strong>100% Genuine Brands</strong>
+                    <span>Direct Saint-Gobain &amp; Sakarni stock</span>
+                  </div>
+                </div>
+
+                <div className="hero-feature-item">
+                  <span className="hfi-check">✓</span>
+                  <div className="hfi-content">
+                    <strong>Master Karigar Network</strong>
+                    <span>Villas, living halls &amp; showrooms</span>
+                  </div>
+                </div>
+
+                <div className="hero-feature-item">
+                  <span className="hfi-check">✓</span>
+                  <div className="hfi-content">
+                    <strong>Mehrun Depot Loading</strong>
+                    <span>Prompt vehicle dispatch across Jalgaon</span>
+                  </div>
+                </div>
+              </div>
+
               {/* Minimal Trust Strip */}
               <div className="hero-stats-row">
                 <div className="stat-pill">
@@ -128,19 +165,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 3D Visual Showcase */}
+            {/* Interactive Hero Visual Showcase */}
             <div className="hero-visual-frame" data-reveal>
-              <div className="hero-art-card">
-                <div className="canvas-frame">
-                  <CeilingScene />
-                </div>
-              </div>
+              <InteractiveHeroCeiling />
             </div>
           </div>
         </section>
 
         {/* AUTHORIZED BRANDS STRIP */}
         <BrandsStrip />
+
+        {/* INTERACTIVE BEFORE VS AFTER CEILING TRANSFORMATION */}
+        <CeilingTransformation />
 
         {/* CLEAN, BALANCED MATERIALS GRID (100% Responsive, NO Awkward Offsets) */}
         <section className="section-lux" id="materials" data-reveal>

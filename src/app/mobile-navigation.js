@@ -31,15 +31,18 @@ export default function MobileNavigation() {
     setOpen(false);
   }, []);
 
-  // Lock body scroll when drawer is open
+  // Lock body scroll and set active class when drawer is open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
+      document.body.classList.add("menu-drawer-active");
     } else {
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-drawer-active");
     }
     return () => {
       document.body.style.overflow = "";
+      document.body.classList.remove("menu-drawer-active");
     };
   }, [open]);
 

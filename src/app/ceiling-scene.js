@@ -187,14 +187,6 @@ export default function CeilingScene() {
 
   return (
     <div className="ceiling-scene-wrapper">
-      {/* Sleek Minimal Top Hint */}
-      <div className="scene-top-bar">
-        <span className="art-live-pill">
-          <span className="dot-live" /> 3D FALSE CEILING MODEL
-        </span>
-        <span className="scene-drag-hint">↻ Auto-Rotating 360°</span>
-      </div>
-
       <Canvas
         camera={{ position: [6.8, 5.8, 7.2], fov: 36 }}
         dpr={[1, 1.8]}
